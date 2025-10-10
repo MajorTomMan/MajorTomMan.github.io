@@ -1,0 +1,37 @@
+name: Deploy Hexo Blog
+
+on:
+  push:
+    branches: [ master ] # 方括号内填入拉取代码分支 当监听到push事件就会开启自动部署deploy
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+
+    - name: Install dependencies and build
+      run: |
+        # 关键：切换为国内淘宝镜像，彻底解决 github 频率限制报错 429 限制
+        npm config set registry https://registry.npmmirror.com/
+        # 清除缓存，避免镜像切换不生效
+        npm cache clean --force
+        # 安装依赖（全局和项目依赖都用国内镜像）
+        npm install -g hexo-cli --registry=https://registry.npmmirror.com/
+        npm install --registry=https://registry.npmmirror.com/
+        # 构建静态文件
+        hexo clean
+        hexo generate
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.BLOG_TOKEN }}  # SSH Key
+        publish_dir: ./public
+        publish_branch: pages  # 部署到独立分支
