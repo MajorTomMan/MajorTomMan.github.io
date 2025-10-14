@@ -16,6 +16,11 @@ menu:
   schedule: Schedule
   sitemap: Sitemap
   commonweal: Commonweal 404
+  work: Work
+  tech: Tech
+  life: Life
+  note: Note
+  other: Other
 
 sidebar:
   overview: Overview

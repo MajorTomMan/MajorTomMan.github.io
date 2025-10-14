@@ -68,6 +68,11 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  工作记录: work
+  学习笔记: note
+  技术文档: tech
+  生活记录: life
+  其他: other
 tag_map:
 
 # Metadata elements

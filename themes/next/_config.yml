@@ -72,7 +72,8 @@ creative_commons:
   # You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
   # CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
   language:
-
+    - zh-CN
+    - en
 # Open graph settings
 # See: https://hexo.io/docs/helpers#open-graph
 open_graph:
@@ -96,15 +97,13 @@ open_graph:
 # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
 # External url should start with http:// or https://
 menu:
-  #home: / || fa fa-home
-  #about: /about/ || fa fa-user
-  #tags: /tags/ || fa fa-tags
-  #categories: /categories/ || fa fa-th
-  #archives: /archives/ || fa fa-archive
-  #schedule: /schedule/ || fa fa-calendar
-  #sitemap: /sitemap.xml || fa fa-sitemap
-  #commonweal: /404/ || fa fa-heartbeat
-
+  home: / || fa fa-home
+  work: /categories/work/ || fa fa-th
+  note: /categories/note/ || fa fa-book
+  tech: /categories/tech/ || fa fa-code
+  life: /categories/life/ || fa fa-coffee
+  other: /categories/other/ || fa fa-ellipsis-h
+  
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true

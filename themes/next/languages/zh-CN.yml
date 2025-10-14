@@ -15,6 +15,11 @@ menu:
   schedule: 日程表
   sitemap: 站点地图
   commonweal: 公益 404
+  work: 工作记录
+  tech: 技术文档
+  life: 生活点滴
+  note: 学习笔记
+  other: 其他
 sidebar:
   overview: 站点概览
   toc: 文章目录
