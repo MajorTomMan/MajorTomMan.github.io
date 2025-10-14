@@ -19,13 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="2025年10月14日">
+    <meta name="description" content="今天在处理bug时,遇到了一个Android 8以后的改动,在此先记录一下 问题情况 在处理一个需求的时候,需要对U盘的插入和状态变化进行监听,之前写的检测算法代码过于复杂,且在Android12的机器上无法正常运行,所以正好借此机会对于Android12的改动进行一个学习 前置知识 在Android9之前,处理U盘的插入以及就绪情况需要监听系统发出的各个广播 列一些常用的USb相关广播表如下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次Android更新后的改动">
 <meta property="og:url" content="http://example.com/2025/10/10/work/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今天在处理bug时,遇到了一个Android 8以后的改动,在此先记录一下 问题情况 在处理一个需求的时候,需要对U盘的插入和状态变化进行监听,之前写的检测算法代码过于复杂,且在Android12的机器上无法正常运行,所以正好借此机会对于Android12的改动进行一个学习 前置知识 在Android9之前,处理U盘的插入以及就绪情况需要监听系统发出的各个广播 列一些常用的USb相关广播表如下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-10T06:25:02.000Z">
-<meta property="article:modified_time" content="2025-10-14T09:07:00.967Z">
+<meta property="article:modified_time" content="2025-10-14T10:47:02.623Z">
 <meta property="article:author" content="MajorTom">
 <meta property="article:tag" content="blog">
 <meta property="article:tag" content="java">
@@ -36,10 +38,10 @@
 <link rel="canonical" href="http://example.com/2025/10/10/work/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/10/10/work/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/","path":"2025/10/10/work/2025年10月14日/","title":"2025年10月14日"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/10/10/work/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/","path":"2025/10/10/work/2025年10月14日/","title":"记一次Android更新后的改动"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>2025年10月14日 | Hexo</title>
+<title>记一次Android更新后的改动 | Hexo</title>
   
 
 
@@ -115,7 +117,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -128,6 +130,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%83%85%E5%86%B5"><span class="nav-number">1.</span> <span class="nav-text">问题情况</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">前置知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%83%85%E5%86%B5%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">问题情况分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UsbStorageVolumeCallback"><span class="nav-number">3.1.</span> <span class="nav-text">UsbStorageVolumeCallback</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -189,12 +192,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="2025年10月14日 | Hexo">
+      <meta itemprop="name" content="记一次Android更新后的改动 | Hexo">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          2025年10月14日
+          记一次Android更新后的改动
         </h1>
 
         <div class="post-meta-container">
@@ -212,7 +215,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-14 17:07:00" itemprop="dateModified" datetime="2025-10-14T17:07:00+08:00">2025-10-14</time>
+      <time title="修改时间：2025-10-14 18:47:02" itemprop="dateModified" datetime="2025-10-14T18:47:02+08:00">2025-10-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -233,7 +236,108 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><p>今天在处理bug时,遇到了一个Android 8以后的改动,在此先记录一下</p>
+<h1 id="问题情况"><a href="#问题情况" class="headerlink" title="问题情况"></a>问题情况</h1><p> 在处理一个需求的时候,需要对U盘的插入和状态变化进行监听,之前写的检测算法代码过于复杂,且在Android12的机器上无法正常运行,所以正好借此机会对于Android12的改动进行一个学习</p>
+<h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><p> 在Android9之前,处理U盘的插入以及就绪情况需要监听系统发出的各个广播<br> 列一些常用的USb相关广播表如下<br>  Android 9 之前</p>
+<table>
+<thead>
+<tr>
+<th align="center">广播名字</th>
+<th align="center">广播字符串</th>
+<th align="center">广播代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">USB 设备插入</td>
+<td align="center">android.hardware.usb.action.USB_DEVICE_ATTACHED</td>
+<td align="center">ACTION_USB_DEVICE_ATTACHED</td>
+</tr>
+<tr>
+<td align="center">USB 设备移除</td>
+<td align="center">android.hardware.usb.action.USB_DEVICE_DETACHED</td>
+<td align="center">ACTION_USB_DEVICE_DETACHED</td>
+</tr>
+<tr>
+<td align="center">USB 配置更改</td>
+<td align="center">android.hardware.usb.action.USB_STATE</td>
+<td align="center">ACTION_USB_STATE</td>
+</tr>
+<tr>
+<td align="center">USB 权限授予</td>
+<td align="center">android.hardware.usb.action.USB_PERMISSION</td>
+<td align="center">ACTION_USB_PERMISSION</td>
+</tr>
+<tr>
+<td align="center">存储检查中</td>
+<td align="center">android.intent.action.MEDIA_CHECKING</td>
+<td align="center">ACTION_MEDIA_CHECKING</td>
+</tr>
+<tr>
+<td align="center">存储挂载完成</td>
+<td align="center">android.intent.action.MEDIA_MOUNTED</td>
+<td align="center">ACTION_MEDIA_MOUNTED</td>
+</tr>
+<tr>
+<td align="center">存储插入但是尚未完成挂载动作</td>
+<td align="center">android.intent.action.MEDIA_UNMOUNTED</td>
+<td align="center">ACTION_MEDIA_UNMOUNTED</td>
+</tr>
+<tr>
+<td align="center">存储正在卸载</td>
+<td align="center">android.intent.action.MEDIA_EJECT</td>
+<td align="center">ACTION_MEDIA_EJECT</td>
+</tr>
+<tr>
+<td align="center">存储卸载完成</td>
+<td align="center">android.intent.action.MEDIA_REMOVED</td>
+<td align="center">ACTION_MEDIA_REMOVED</td>
+</tr>
+<tr>
+<td align="center">存储扫描开始</td>
+<td align="center">android.intent.action.MEDIA_SCANNER_STARTED</td>
+<td align="center">ACTION_MEDIA_SCANNER_STARTED</td>
+</tr>
+<tr>
+<td align="center">存储扫描完成</td>
+<td align="center">android.intent.action.MEDIA_SCANNER_FINISHED</td>
+<td align="center">ACTION_MEDIA_SCANNER_FINISHED</td>
+</tr>
+</tbody></table>
+<p>  一般我们用到最多的是</p>
+<ul>
+<li><strong>ACTION_MEDIA_MOUNTED</strong></li>
+<li><strong>ACTION_MEDIA_REMOVED</strong></li>
+<li><strong>USB_DEVICE_ATTACHED</strong></li>
+<li><strong>USB_DEVICE_DETACHED</strong></li>
+</ul>
+<p>  这四个广播,前两个代表存储的状态变更,而后两者则代表系统通知有存储插入机器,可以对其进行一些对应的操作,但是并不代表存储的状态是可用的,因为系统需要一些时间去对存储进行挂载操作,会大概在几百毫秒内完成,具体数值需要具体机器分析</p>
+<p>  当存储处于Mounted状态时,就代表该存储在机器上可以进行一些针对文件的操作,比如查找,删除等<br>  代码如下:<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UsbReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;UsbReceiver&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> intent.getAction();</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;action-&gt;&quot;</span> + action);</span><br><span class="line">        <span class="keyword">if</span> (action != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">switch</span> (action)&#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&quot;android.intent.action.MEDIA_MOUNTED&quot;</span>:</span><br><span class="line">                   <span class="comment">// do something</span></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&quot;android.intent.action.MEDIA_REMOVED&quot;</span>:</span><br><span class="line">                  <span class="comment">// do something</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  注册广播</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.receiver.UsbReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:priority</span>=<span class="string">&quot;1000&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MEDIA_MOUNTED&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MEDIA_REMOVED&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>  以上代码可以在Android9以前的机器上正常使用,需要注意的是<br>  <strong>动态注册的广播接收者无法在尚未启动过应用的情况下获取系统广播</strong>和<strong>静态注册的广播接收者则会在系统完成启动后在收到对应广播时由系统代为转发至应用广播接收器</strong>,所以想在开机时获取开机广播再进行调用某个应用的话,静态注册广播会是更好的选择</p>
+<p>  以上是Android9之前的系统广播有关前置知识</p>
+<h1 id="问题情况分析"><a href="#问题情况分析" class="headerlink" title="问题情况分析"></a>问题情况分析</h1><p>  在Android9之后,Google加强了广播的安全性,为了限制后台应用滥用广播和提高性能和电池续航,对于隐式广播(没有指定接收者的广播,类似于计算机网络中的DNS广播行为)而言,Google将很多静态可以接收到的广播都转为了动态注册才能接收到对应的广播,具体列表可以去查询Google的开发者文档,其中也包括<strong>ACTION_MEDIA_MOUNTED</strong>这个广播,所以在需要应用在未启动且冷启动也无的情况下处理USB设备的插拔带来了很大的麻烦,但是Google并没有彻底堵住获取这个广播的途径,对于需要获取这个广播的应用,Google提供了新的API来处理这个情况</p>
+<h2 id="UsbStorageVolumeCallback"><a href="#UsbStorageVolumeCallback" class="headerlink" title="UsbStorageVolumeCallback"></a>UsbStorageVolumeCallback</h2><p>  代码如下</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">import</span> android.os.Environment;</span><br><span class="line">  <span class="keyword">import</span> android.os.storage.StorageManager;</span><br><span class="line">  <span class="keyword">import</span> android.os.storage.StorageVolume;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">UsbStorageVolumeCallback</span> <span class="keyword">extends</span> <span class="title class_">StorageManager</span>.StorageVolumeCallback &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStateChanged</span><span class="params">(<span class="meta">@NonNull</span> StorageVolume volume)</span> &#123;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;volume state changed&quot;</span>);</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;volume-&gt;&quot;</span> + volume);</span><br><span class="line">        LogUtils.d(TAG,<span class="string">&quot;volume state -&gt;&quot;</span>+volume.getState());</span><br><span class="line">        LogUtils.d(TAG,<span class="string">&quot;volume context:&quot;</span>+context);</span><br><span class="line">        <span class="keyword">if</span>(volume.isRemovable())&#123;</span><br><span class="line">            LogUtils.d(TAG, <span class="string">&quot;usb device is removable&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span>(volume.getState().equals(Environment.MEDIA_MOUNTED))&#123;</span><br><span class="line">                LogUtils.d(TAG, <span class="string">&quot;usb device mounted&quot;</span>);</span><br><span class="line">                <span class="comment">// do somethings</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  注册回调函数</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StorageManager</span> <span class="variable">storageManager</span> <span class="operator">=</span> getSystemService(StorageManager.class);</span><br><span class="line"><span class="type">UsbStorageVolumeCallback</span> <span class="variable">usbStorageVolumeCallback</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">UsbStorageVolumeCallback</span>();</span><br><span class="line">storageManager.registerStorageVolumeCallback(executor,usbStorageVolumeCallback);</span><br></pre></td></tr></table></figure>
+
+<p>  通过这个回调函数,我们可以在Android9之后让应用获取广播以对USB设备进行一些操作,但是需要指出的一点是,不能直接监听这个广播来获取设备信息,我们需要曲线救国,通过框架层给出的<strong>USB_DEVICE_ATTACHED</strong>广播,我们可以知道有设备进行插入,然后通过注册回调函数,我们可以在系统完成挂载的第一时间获取设备的挂载信息</p>
+<p>  代码如下<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UsbReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;UsbReceiver&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> intent.getAction();</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;action-&gt;&quot;</span> + action);</span><br><span class="line">        <span class="keyword">if</span> (action != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">switch</span> (action)&#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&quot;android.hardware.usb.action.USB_DEVICE_ATTACHED&quot;</span>:</span><br><span class="line">                    <span class="comment">// do somethings</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注册广播</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.receiver.UsbReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:priority</span>=<span class="string">&quot;1000&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.hardware.usb.action.USB_DEVICE_ATTACHED&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.hardware.usb.action.USB_DEVICE_DETACHED&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过注册这个广播,通过Google允许的静态接收广播<strong>USB_DEVICE_ATTACHED</strong>,可以间接注册回调函数</p>
+<p>注册服务,避开Google对于广播处理时间只有6秒的限制,让需要长时间作业的任务通过服务来继续</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UsbReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;UsbReceiver&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> intent.getAction();</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;action-&gt;&quot;</span> + action);</span><br><span class="line">        <span class="keyword">if</span> (action != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">switch</span> (action)&#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&quot;android.hardware.usb.action.USB_DEVICE_ATTACHED&quot;</span>:</span><br><span class="line">                    <span class="type">JobScheduler</span> <span class="variable">jobScheduler</span> <span class="operator">=</span> context.getSystemService(JobScheduler.class);</span><br><span class="line">                    <span class="type">JobInfo</span> <span class="variable">service</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JobInfo</span>.Builder(</span><br><span class="line">                            <span class="number">2333</span>,</span><br><span class="line">                            <span class="keyword">new</span> <span class="title class_">ComponentName</span>(context,UsbService.class)</span><br><span class="line">                    ).setOverrideDeadline(<span class="number">0</span>).build();</span><br><span class="line">                    LogUtils.d(TAG, <span class="string">&quot;usb device attached, starting UsbService&quot;</span>);</span><br><span class="line">                    jobScheduler.schedule(service);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务中的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UsbService</span> <span class="keyword">extends</span> <span class="title class_">JobService</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;UsbReceiver&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newSingleThreadExecutor();</span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line">    <span class="keyword">private</span> StorageManager storageManager;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">UsbStorageVolumeCallback</span> <span class="variable">usbStorageVolumeCallback</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">UsbStorageVolumeCallback</span>();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">isRegister</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onStartJob</span><span class="params">(JobParameters params)</span> &#123;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;UsbService started&quot;</span>);</span><br><span class="line">        <span class="comment">// 防止重复注册导致重复执行的问题</span></span><br><span class="line">        <span class="keyword">if</span>(storageManager == <span class="literal">null</span>)&#123;</span><br><span class="line">            storageManager = getSystemService(StorageManager.class);</span><br><span class="line">        &#125;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;register usb storage volume callback&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(storageManager != <span class="literal">null</span>)&#123;</span><br><span class="line">            LogUtils.d(TAG, <span class="string">&quot;storageManager-&gt;&quot;</span> + storageManager);</span><br><span class="line">            <span class="comment">// 防止重复注册回调函数</span></span><br><span class="line">            <span class="keyword">if</span>(isRegister)&#123;</span><br><span class="line">                LogUtils.d(TAG, <span class="string">&quot;usb storage volume callback already registered, skip&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            storageManager.registerStorageVolumeCallback(executor,usbStorageVolumeCallback);</span><br><span class="line">            isRegister = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            LogUtils.e(TAG, <span class="string">&quot;storageManager is null, cant register usb storage volume callback&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onStopJob</span><span class="params">(JobParameters params)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!isRegister&amp;&amp;storageManager != <span class="literal">null</span> &amp;&amp; usbStorageVolumeCallback != <span class="literal">null</span>) &#123;</span><br><span class="line">            storageManager.unregisterStorageVolumeCallback(usbStorageVolumeCallback);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>  通过以上的分析,在Android9之后的应用,可以通过<strong>StorageManager</strong>和<strong>UsbStorageVolumeCallback</strong>以及<strong>ACTION_USB_DEVICE_ATTACHED</strong>的配合来间接完成Android8之前只需要注册广播就可以完成的任务</p>
+
     </div>
 
     
