@@ -135,7 +135,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,6 +161,101 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/16/note/2025%E5%B9%B410%E6%9C%8816%E6%97%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MajorTom">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/10/16/note/2025%E5%B9%B410%E6%9C%8816%E6%97%A5/" class="post-title-link" itemprop="url">又记一次工作中的问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-10-16 15:07:39 / 修改时间：17:10:55" itemprop="dateCreated datePublished" datetime="2025-10-16T15:07:39+08:00">2025-10-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="问题情况"><a href="#问题情况" class="headerlink" title="问题情况"></a>问题情况</h1><p>在处理设备的灯光时,在结束的时候,遇到了灯光没有按照预期情况结束的问题.<br>爆出如下错误</p>
+<pre><code><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  06-09 14:35:52.973890 2825  2849 W System.err: java.lang.InterruptedException</span><br><span class="line"> * 06-09 14:35:52.973891 2825 2849 W System.err: at java.lang.Object.wait(Native</span><br><span class="line"> * Method)</span><br><span class="line"> * 06-09 14:35:52.974050 2825 2849 W System.err: at</span><br><span class="line"> * java.lang.Object.wait(Object.java:442)</span><br><span class="line"> * 06-09 14:35:52.974076 2825 2849 W System.err: at</span><br><span class="line"> * java.lang.Object.wait(Object.java:568)</span><br><span class="line"> * 06-09 14:35:52.974094 2825 2849 W System.err: at</span><br><span class="line"> * java.lang.UNIXProcess.waitFor(UNIXProcess.java:208)</span><br><span class="line"> * 06-09 14:35:52.974111 2825 2849 W System.err: at</span><br><span class="line"> * xxx.xxx.xxx.ShellUtils.execCmd(ShellUtils.java:114)</span><br><span class="line"> * 06-09 14:35:52.974142 2825 2849 W System.err: at</span><br><span class="line"> * xxx.xxx.xxx.LightUtils.changeLightStatus(LightUtils.java:68)</span><br><span class="line"> * 06-09 14:35:52.974160 2825 2849 W System.err: at</span><br><span class="line"> * xxx.xxx.xxx.LightUtils.lambda$reflashLightStatus$0(LightUtils.java:30)</span><br><span class="line"> * 06-09 14:35:52.974180 2825 2849 W System.err: at</span><br><span class="line"> * xxx.xxx.xxx.LightUtils$$ExternalSyntheticLambda0.run(Unknown</span><br><span class="line"> * Source:0)</span><br><span class="line"> * 06-09 14:35:52.974195 2825 2849 W System.err: at</span><br><span class="line"> * java.lang.Thread.run(Thread.java:920)</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h1 id="情况分析"><a href="#情况分析" class="headerlink" title="情况分析"></a>情况分析</h1><p>先查询该方法的官方注释</p>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Causes the current thread to wait, if necessary, until the</span></span><br><span class="line"><span class="comment"> * process represented by this &#123;<span class="doctag">@code</span> Process&#125; object has</span></span><br><span class="line"><span class="comment"> * terminated.  This method returns immediately if the process</span></span><br><span class="line"><span class="comment"> * has already terminated.  If the process has not yet</span></span><br><span class="line"><span class="comment"> * terminated, the calling thread will be blocked until the</span></span><br><span class="line"><span class="comment"> * process exits.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the exit value of the process represented by this</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> Process&#125; object.  By convention, the value</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> 0&#125; indicates normal termination.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> InterruptedException if the current thread is</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@linkplain</span> Thread#interrupt() interrupted&#125; by another</span></span><br><span class="line"><span class="comment"> *         thread while it is waiting, then the wait is ended and</span></span><br><span class="line"><span class="comment"> *         an &#123;<span class="doctag">@link</span> InterruptedException&#125; is thrown.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">int</span> <span class="title function_">waitFor</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>其中可以得知在阻塞期间,执行命令的线程被其他线程在阻塞期间强行中断后,会抛出这个中断异常</p>
+<p>而查看代码中,涉及到这个方法的地方只有这里</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">changeLightStatus</span><span class="params">(String status, File src)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isLightFileExist(src)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (src.getAbsolutePath().contains(<span class="string">&quot;xxx&quot;</span>)) &#123;</span><br><span class="line">            ShellUtils.<span class="type">CommandResult</span> <span class="variable">commandResult</span> <span class="operator">=</span> ShellUtils.execCmd(</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;echo &quot;</span> + status + <span class="string">&quot; &gt; xxxx&quot;</span> &#125;, <span class="literal">false</span>, <span class="literal">false</span>,</span><br><span class="line">                    mCallback);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (src.getAbsolutePath().contains(<span class="string">&quot;yyy&quot;</span>)) &#123;</span><br><span class="line">            ShellUtils.<span class="type">CommandResult</span> <span class="variable">commandResult</span> <span class="operator">=</span> ShellUtils.execCmd(</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;echo &quot;</span> + status + <span class="string">&quot; &gt; xxxx&quot;</span> &#125;, <span class="literal">false</span>, <span class="literal">false</span>,</span><br><span class="line">                    mCallback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CommandResult <span class="title function_">execCmd</span><span class="params">(<span class="keyword">final</span> String[] commands,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> <span class="type">boolean</span> isRooted,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> <span class="type">boolean</span> isNeedResultMsg)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (commands == <span class="literal">null</span> || commands.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CommandResult</span>(result, <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">successResult</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">errorResult</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">successMsg</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">errorMsg</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">DataOutputStream</span> <span class="variable">os</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        process = Runtime.getRuntime().exec(isRooted ? <span class="string">&quot;su&quot;</span> : <span class="string">&quot;sh&quot;</span>);</span><br><span class="line">        result = process.waitFor();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        <span class="comment">// do somethings</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CommandResult</span>(</span><br><span class="line">            result,</span><br><span class="line">            successMsg == <span class="literal">null</span> ? <span class="string">&quot;&quot;</span> : successMsg.toString(),</span><br><span class="line">            errorMsg == <span class="literal">null</span> ? <span class="string">&quot;&quot;</span> : errorMsg.toString());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>再看业务代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">reflashLightStatus</span><span class="params">()</span> &#123;</span><br><span class="line">    cleanLight(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;xxx&quot;</span>), <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;yyy&quot;</span>));</span><br><span class="line">    lightThread = <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">lightStatus</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (!Thread.currentThread().isInterrupted()) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (lightStatus) &#123;</span><br><span class="line">                    changeLightStatus(<span class="string">&quot;0&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;xxx&quot;</span>));</span><br><span class="line">                    changeLightStatus(<span class="string">&quot;1&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;yyy&quot;</span>));</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    changeLightStatus(<span class="string">&quot;1&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;xxx&quot;</span>));</span><br><span class="line">                    changeLightStatus(<span class="string">&quot;0&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;yyy&quot;</span>));</span><br><span class="line">                &#125;</span><br><span class="line">                lightStatus = !lightStatus;</span><br><span class="line">                Thread.sleep(<span class="number">500</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException ignored) &#123;</span><br><span class="line">                LogUtils.d(TAG, <span class="string">&quot;------------------------InterruptedException------------------------------&quot;</span>);</span><br><span class="line">                cleanLight(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;xxx&quot;</span>), <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;yyy&quot;</span>));</span><br><span class="line">                Thread.currentThread().interrupt();</span><br><span class="line">                LogUtils.d(TAG, <span class="string">&quot;reflashLightStatus: &quot;</span> + Thread.currentThread().isInterrupted());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    lightThread.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">interrupt</span><span class="params">()</span> &#123;</span><br><span class="line">    LogUtils.d(TAG, <span class="string">&quot;------------------------interrupt------------------------------&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(lightThread!=<span class="literal">null</span>)&#123;</span><br><span class="line">        lightThread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPause</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onPause();</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;onPause&quot;</span>);</span><br><span class="line">    LightUtils.interrupt();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>从以上业务代码来看,很显然,在onPause中,会直接调用线程的结束方法</p>
+<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><p>在读过方法的注释后,突然意识到,是不是在阻塞期间,刚好触发了线程的中断方法,然后导致执行命令的线程被灯光线程恰好中断了,从而导致抛出了这个异常</p>
+<p>既然不能在执行阶段中断,那就只能等执行完成了再结束,既然如此,不如设计一个回调函数接口,让调用者可以在执行完成后得知完成后再结束进程</p>
+<p>回调函数接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ShellCallback</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onError</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ShellCallback</span> <span class="variable">mCallback</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ShellCallback</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">()</span> &#123;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;onSuccess: &quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (isNeedInterrupt) &#123;</span><br><span class="line">            <span class="comment">// do somethings</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onError</span><span class="params">()</span> &#123;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;onError: &quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (isNeedInterrupt) &#123;</span><br><span class="line">            <span class="comment">// do somethings</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在调用时,只要将中断方法改成如下代码,应该就可以了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">interrupt</span><span class="params">()</span> &#123;</span><br><span class="line">    LogUtils.d(TAG, <span class="string">&quot;------------------------interrupt------------------------------&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!isNeedInterrupt) &#123;</span><br><span class="line">        isNeedInterrupt = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>这样,就可以解决中断导致抛出中断异常的问题了</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过设计回调,将一个可能会在阻塞时中断的代码,改成了可以拖延至执行完成后再中断,避免了灯状态不一样的问题</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -198,9 +293,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-10-15 10:45:24 / 修改时间：15:58:53" itemprop="dateCreated datePublished" datetime="2025-10-15T10:45:24+08:00">2025-10-15</time>
+      <time title="创建时间：2025-10-15 10:45:24" itemprop="dateCreated datePublished" datetime="2025-10-15T10:45:24+08:00">2025-10-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-10-16 17:10:55" itemprop="dateModified" datetime="2025-10-16T17:10:55+08:00">2025-10-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -358,7 +459,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-15 15:58:53" itemprop="dateModified" datetime="2025-10-15T15:58:53+08:00">2025-10-15</time>
+      <time title="修改时间：2025-10-16 17:10:55" itemprop="dateModified" datetime="2025-10-16T17:10:55+08:00">2025-10-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -458,7 +559,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-15 15:58:53" itemprop="dateModified" datetime="2025-10-15T15:58:53+08:00">2025-10-15</time>
+      <time title="修改时间：2025-10-16 17:10:55" itemprop="dateModified" datetime="2025-10-16T17:10:55+08:00">2025-10-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
