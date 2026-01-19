@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/butterfly-icon.png">
 <meta property="article:published_time" content="2025-10-10T06:25:02.000Z">
-<meta property="article:modified_time" content="2026-01-19T02:56:14.025Z">
+<meta property="article:modified_time" content="2026-01-19T03:01:30.712Z">
 <meta property="article:author" content="MajorTom">
 <meta property="article:tag" content="blog">
 <meta property="article:tag" content="java">
@@ -20,7 +20,7 @@
   "url": "http://example.com/2025/10/10/note/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/",
   "image": "http://example.com/img/butterfly-icon.png",
   "datePublished": "2025-10-10T06:25:02.000Z",
-  "dateModified": "2026-01-19T02:56:14.025Z",
+  "dateModified": "2026-01-19T03:01:30.712Z",
   "author": [
     {
       "@type": "Person",
@@ -161,7 +161,7 @@
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">记一次Android更新后的改动</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">记一次Android更新后的改动</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-10T06:25:02.000Z" title="发表于 2025-10-10 14:25:02">2025-10-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-19T02:56:14.025Z" title="更新于 2026-01-19 10:56:14">2026-01-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/note/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>今天在处理 bug 时,遇到了一个 Android 8 以后的改动,在此先记录一下</p>
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">记一次Android更新后的改动</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">记一次Android更新后的改动</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-10T06:25:02.000Z" title="发表于 2025-10-10 14:25:02">2025-10-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-19T03:01:30.712Z" title="更新于 2026-01-19 11:01:30">2026-01-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/note/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>今天在处理 bug 时,遇到了一个 Android 8 以后的改动,在此先记录一下</p>
 <h1 id="问题情况"><a href="#问题情况" class="headerlink" title="问题情况"></a>问题情况</h1><p>在处理一个需求的时候,需要对 U 盘的插入和状态变化进行监听,之前写的检测算法代码过于复杂,且在 Android12 的机器上无法正常运行,所以正好借此机会对于 Android12 的改动进行一个学习</p>
 <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><p>在 Android8 之前,处理 U 盘的插入以及就绪情况需要监听系统发出的各个广播<br>列一些常用的 USb 相关广播表如下<br>Android 9 之前</p>
 <table>
