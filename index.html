@@ -1,746 +1,176 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
-
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo</title><meta name="author" content="MajorTom"><meta name="copyright" content="MajorTom"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
 <meta property="article:author" content="MajorTom">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Hexo",
+  "alternateName": [
+    "example.com"
+  ],
+  "url": "http://example.com/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-
-<link rel="canonical" href="http://example.com/">
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hexo</title>
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-
-
-
-
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
-<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">Hexo</h1>
-      <i class="logo-line"></i>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-work"><a href="/categories/work/" rel="section"><i class="fa fa-th fa-fw"></i>工作记录</a></li><li class="menu-item menu-item-note"><a href="/categories/note/" rel="section"><i class="fa fa-book fa-fw"></i>学习笔记</a></li><li class="menu-item menu-item-tech"><a href="/categories/tech/" rel="section"><i class="fa fa-code fa-fw"></i>技术文档</a></li><li class="menu-item menu-item-life"><a href="/categories/life/" rel="section"><i class="fa fa-coffee fa-fw"></i>生活点滴</a></li><li class="menu-item menu-item-other"><a href="/categories/other/" rel="section"><i class="fa fa-ellipsis-h fa-fw"></i>其他</a></li>
-  </ul>
-</nav>
-
-
-
-
-</header>
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
         
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
   
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/10/16/note/2025%E5%B9%B410%E6%9C%8816%E6%97%A5/" title="又记一次工作中的问题">又记一次工作中的问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-10-16T07:07:39.000Z" title="发表于 2025-10-16 15:07:39">2025-10-16</time></span></div><div class="content">问题情况在处理设备的灯光时,在结束的时候,遇到了灯光没有按照预期情况结束的问题.爆出如下错误 12345678910111213141516171819202122/***  06-09 14:35:52.973890 2825  2849 W System.err: java.lang.InterruptedException * 06-09 14:35:52.973891 2825 2849 W System.err: at java.lang.Object.wait(Native * Method) * 06-09 14:35:52.974050 2825 2849 W System.err: at * java.lang.Object.wait(Object.java:442) * 06-09 14:35:52.974076 2825 2849 W System.err: at * java.lang.Object.wait(Object.java:568) * 06-09 14:35:52.974094 2825 2849 W System.err: at * java...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/10/15/note/2025%E6%9C%8810%E6%9C%8815%E6%97%A5/" title="又记一次Android版本的变动">又记一次Android版本的变动</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-10-15T02:45:24.000Z" title="发表于 2025-10-15 10:45:24">2025-10-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/note/">学习笔记</a></span></div><div class="content">问题情况之前在处理关于恢复出厂设置的问题时,遇到了不允许后台执行系统性广播的问题,在此谨记 情况分析因为工作需求,所以需要做读取 U 盘文件进行还原出厂设置的功能,当其他功能都做好后,发送广播却一直不生效,查看日志后发现了如下日志 110-14 09:59:16.478   731   813 W BroadcastQueue: Background execution not allowed: receiving Intent &#123; act=android.intent.action.MASTER_CLEAR flg=0x10000010 (has extras) &#125; to android/com.android.server.MasterClearReceiver  此日志的意思是该广播无法在后台状态执行.经过网上查询后得知如下信息 1从 Android 8(API 26)开始,Google 引入了 后台执行限制(Background Execution Limits) :当应用不在前台(即后台运行、未在用户可见状态)时,它不能随意接收或触发广播、启动服务....</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/10/10/concurrent/%E5%B9%B6%E5%8F%91/" title="Java并发">Java并发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-10-10T06:25:02.000Z" title="发表于 2025-10-10 14:25:02">2025-10-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/tech/">技术文档</a></span></div><div class="content">并发 简述  在计算机术语中,并发被描述为同一时间多个任务在一个处理器上执行而互相并不关心其执行结果,本质是为了更加高效的利用处理器的时间以及资源,该概念是为了解决多任务情况下处理器排队执行导致的效率低下问题.  起源     由于当前的计算机  理论  实际代码  总结   </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/10/10/note/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/" title="记一次Android更新后的改动">记一次Android更新后的改动</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-10-10T06:25:02.000Z" title="发表于 2025-10-10 14:25:02">2025-10-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/note/">学习笔记</a></span></div><div class="content">今天在处理 bug 时,遇到了一个 Android 8 以后的改动,在此先记录一下 问题情况在处理一个需求的时候,需要对 U 盘的插入和状态变化进行监听,之前写的检测算法代码过于复杂,且在 Android12 的机器上无法正常运行,所以正好借此机会对于 Android12 的改动进行一个学习 前置知识在 Android8 之前,处理 U 盘的插入以及就绪情况需要监听系统发出的各个广播列一些常用的 USb 相关广播表如下Android 9 之前    广播名字 广播字符串 广播代码    USB 设备插入 android.hardware.usb.action.USB_DEVICE_ATTACHED ACTION_USB_DEVICE_ATTACHED   USB 设备移除 android.hardware.usb.action.USB_DEVICE_DETACHED ACTION_USB_DEVICE_DETACHED   USB 配置更改 android.hardware.usb.action.USB_STATE ACTION_USB_STATE   存储检查中 android...</div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">MajorTom</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/16/note/2025%E5%B9%B410%E6%9C%8816%E6%97%A5/" title="又记一次工作中的问题">又记一次工作中的问题</a><time datetime="2025-10-16T07:07:39.000Z" title="发表于 2025-10-16 15:07:39">2025-10-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/15/note/2025%E6%9C%8810%E6%9C%8815%E6%97%A5/" title="又记一次Android版本的变动">又记一次Android版本的变动</a><time datetime="2025-10-15T02:45:24.000Z" title="发表于 2025-10-15 10:45:24">2025-10-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/10/concurrent/%E5%B9%B6%E5%8F%91/" title="Java并发">Java并发</a><time datetime="2025-10-10T06:25:02.000Z" title="发表于 2025-10-10 14:25:02">2025-10-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/10/note/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/" title="记一次Android更新后的改动">记一次Android更新后的改动</a><time datetime="2025-10-10T06:25:02.000Z" title="发表于 2025-10-10 14:25:02">2025-10-10</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/note/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/tech/"><span class="card-category-list-name">技术文档</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/java/" style="font-size: 1.5em; color: #99a9bf">java</a> <a href="/tags/markdown/" style="font-size: 1.3em; color: #99a1ac">markdown</a> <a href="/tags/android/" style="font-size: 1.1em; color: #999">android</a> <a href="/tags/blog/" style="font-size: 1.3em; color: #99a1ac">blog</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
         </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">MajorTom</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">4</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
-</div>
-
-        </div>
-      </div>
-    </div>
-
-    
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/16/note/2025%E5%B9%B410%E6%9C%8816%E6%97%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MajorTom">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Hexo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/10/16/note/2025%E5%B9%B410%E6%9C%8816%E6%97%A5/" class="post-title-link" itemprop="url">又记一次工作中的问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-10-16 15:07:39" itemprop="dateCreated datePublished" datetime="2025-10-16T15:07:39+08:00">2025-10-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-01-19 10:32:57" itemprop="dateModified" datetime="2026-01-19T10:32:57+08:00">2026-01-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="问题情况"><a href="#问题情况" class="headerlink" title="问题情况"></a>问题情况</h1><p>在处理设备的灯光时,在结束的时候,遇到了灯光没有按照预期情况结束的问题.<br>爆出如下错误</p>
-<pre><code><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  06-09 14:35:52.973890 2825  2849 W System.err: java.lang.InterruptedException</span><br><span class="line"> * 06-09 14:35:52.973891 2825 2849 W System.err: at java.lang.Object.wait(Native</span><br><span class="line"> * Method)</span><br><span class="line"> * 06-09 14:35:52.974050 2825 2849 W System.err: at</span><br><span class="line"> * java.lang.Object.wait(Object.java:442)</span><br><span class="line"> * 06-09 14:35:52.974076 2825 2849 W System.err: at</span><br><span class="line"> * java.lang.Object.wait(Object.java:568)</span><br><span class="line"> * 06-09 14:35:52.974094 2825 2849 W System.err: at</span><br><span class="line"> * java.lang.UNIXProcess.waitFor(UNIXProcess.java:208)</span><br><span class="line"> * 06-09 14:35:52.974111 2825 2849 W System.err: at</span><br><span class="line"> * xxx.xxx.xxx.ShellUtils.execCmd(ShellUtils.java:114)</span><br><span class="line"> * 06-09 14:35:52.974142 2825 2849 W System.err: at</span><br><span class="line"> * xxx.xxx.xxx.LightUtils.changeLightStatus(LightUtils.java:68)</span><br><span class="line"> * 06-09 14:35:52.974160 2825 2849 W System.err: at</span><br><span class="line"> * xxx.xxx.xxx.LightUtils.lambda$reflashLightStatus$0(LightUtils.java:30)</span><br><span class="line"> * 06-09 14:35:52.974180 2825 2849 W System.err: at</span><br><span class="line"> * xxx.xxx.xxx.LightUtils$$ExternalSyntheticLambda0.run(Unknown</span><br><span class="line"> * Source:0)</span><br><span class="line"> * 06-09 14:35:52.974195 2825 2849 W System.err: at</span><br><span class="line"> * java.lang.Thread.run(Thread.java:920)</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
-</code></pre>
-<h1 id="情况分析"><a href="#情况分析" class="headerlink" title="情况分析"></a>情况分析</h1><p>先查询该方法的官方注释</p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Causes the current thread to wait, if necessary, until the</span></span><br><span class="line"><span class="comment"> * process represented by this &#123;<span class="doctag">@code</span> Process&#125; object has</span></span><br><span class="line"><span class="comment"> * terminated.  This method returns immediately if the process</span></span><br><span class="line"><span class="comment"> * has already terminated.  If the process has not yet</span></span><br><span class="line"><span class="comment"> * terminated, the calling thread will be blocked until the</span></span><br><span class="line"><span class="comment"> * process exits.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the exit value of the process represented by this</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> Process&#125; object.  By convention, the value</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> 0&#125; indicates normal termination.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> InterruptedException if the current thread is</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@linkplain</span> Thread#interrupt() interrupted&#125; by another</span></span><br><span class="line"><span class="comment"> *         thread while it is waiting, then the wait is ended and</span></span><br><span class="line"><span class="comment"> *         an &#123;<span class="doctag">@link</span> InterruptedException&#125; is thrown.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">int</span> <span class="title function_">waitFor</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException;</span><br></pre></td></tr></table></figure>
-</code></pre>
-<p>其中可以得知在阻塞期间,执行命令的线程被其他线程在阻塞期间强行中断后,会抛出这个中断异常</p>
-<p>而查看代码中,涉及到这个方法的地方只有这里</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">changeLightStatus</span><span class="params">(String status, File src)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isLightFileExist(src)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (src.getAbsolutePath().contains(<span class="string">&quot;xxx&quot;</span>)) &#123;</span><br><span class="line">            ShellUtils.<span class="type">CommandResult</span> <span class="variable">commandResult</span> <span class="operator">=</span> ShellUtils.execCmd(</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;echo &quot;</span> + status + <span class="string">&quot; &gt; xxxx&quot;</span> &#125;, <span class="literal">false</span>, <span class="literal">false</span>,</span><br><span class="line">                    mCallback);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (src.getAbsolutePath().contains(<span class="string">&quot;yyy&quot;</span>)) &#123;</span><br><span class="line">            ShellUtils.<span class="type">CommandResult</span> <span class="variable">commandResult</span> <span class="operator">=</span> ShellUtils.execCmd(</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;echo &quot;</span> + status + <span class="string">&quot; &gt; xxxx&quot;</span> &#125;, <span class="literal">false</span>, <span class="literal">false</span>,</span><br><span class="line">                    mCallback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> CommandResult <span class="title function_">execCmd</span><span class="params">(<span class="keyword">final</span> String[] commands,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> <span class="type">boolean</span> isRooted,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> <span class="type">boolean</span> isNeedResultMsg)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (commands == <span class="literal">null</span> || commands.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CommandResult</span>(result, <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">successResult</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">errorResult</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">successMsg</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">errorMsg</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">DataOutputStream</span> <span class="variable">os</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        process = Runtime.getRuntime().exec(isRooted ? <span class="string">&quot;su&quot;</span> : <span class="string">&quot;sh&quot;</span>);</span><br><span class="line">        result = process.waitFor();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        <span class="comment">// do somethings</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CommandResult</span>(</span><br><span class="line">            result,</span><br><span class="line">            successMsg == <span class="literal">null</span> ? <span class="string">&quot;&quot;</span> : successMsg.toString(),</span><br><span class="line">            errorMsg == <span class="literal">null</span> ? <span class="string">&quot;&quot;</span> : errorMsg.toString());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>再看业务代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">reflashLightStatus</span><span class="params">()</span> &#123;</span><br><span class="line">    cleanLight(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;xxx&quot;</span>), <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;yyy&quot;</span>));</span><br><span class="line">    lightThread = <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">lightStatus</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (!Thread.currentThread().isInterrupted()) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (lightStatus) &#123;</span><br><span class="line">                    changeLightStatus(<span class="string">&quot;0&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;xxx&quot;</span>));</span><br><span class="line">                    changeLightStatus(<span class="string">&quot;1&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;yyy&quot;</span>));</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    changeLightStatus(<span class="string">&quot;1&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;xxx&quot;</span>));</span><br><span class="line">                    changeLightStatus(<span class="string">&quot;0&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;yyy&quot;</span>));</span><br><span class="line">                &#125;</span><br><span class="line">                lightStatus = !lightStatus;</span><br><span class="line">                Thread.sleep(<span class="number">500</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException ignored) &#123;</span><br><span class="line">                LogUtils.d(TAG, <span class="string">&quot;------------------------InterruptedException------------------------------&quot;</span>);</span><br><span class="line">                cleanLight(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;xxx&quot;</span>), <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;yyy&quot;</span>));</span><br><span class="line">                Thread.currentThread().interrupt();</span><br><span class="line">                LogUtils.d(TAG, <span class="string">&quot;reflashLightStatus: &quot;</span> + Thread.currentThread().isInterrupted());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    lightThread.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">interrupt</span><span class="params">()</span> &#123;</span><br><span class="line">    LogUtils.d(TAG, <span class="string">&quot;------------------------interrupt------------------------------&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(lightThread!=<span class="literal">null</span>)&#123;</span><br><span class="line">        lightThread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onPause</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onPause();</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;onPause&quot;</span>);</span><br><span class="line">    LightUtils.interrupt();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>从以上业务代码来看,很显然,在onPause中,会直接调用线程的结束方法</p>
-<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><p>在读过方法的注释后,突然意识到,是不是在阻塞期间,刚好触发了线程的中断方法,然后导致执行命令的线程被灯光线程恰好中断了,从而导致抛出了这个异常</p>
-<p>既然不能在执行阶段中断,那就只能等执行完成了再结束,既然如此,不如设计一个回调函数接口,让调用者可以在执行完成后得知完成后再结束进程</p>
-<p>回调函数接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ShellCallback</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">onError</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ShellCallback</span> <span class="variable">mCallback</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ShellCallback</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">()</span> &#123;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;onSuccess: &quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (isNeedInterrupt) &#123;</span><br><span class="line">            <span class="comment">// do somethings</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onError</span><span class="params">()</span> &#123;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;onError: &quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (isNeedInterrupt) &#123;</span><br><span class="line">            <span class="comment">// do somethings</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在调用时,只要将中断方法改成如下代码,应该就可以了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">interrupt</span><span class="params">()</span> &#123;</span><br><span class="line">    LogUtils.d(TAG, <span class="string">&quot;------------------------interrupt------------------------------&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!isNeedInterrupt) &#123;</span><br><span class="line">        isNeedInterrupt = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>这样,就可以解决中断导致抛出中断异常的问题了</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过设计回调,将一个可能会在阻塞时中断的代码,改成了可以拖延至执行完成后再中断,避免了灯状态不一样的问题</p>
-
       
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/15/note/2025%E6%9C%8810%E6%9C%8815%E6%97%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MajorTom">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Hexo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/10/15/note/2025%E6%9C%8810%E6%9C%8815%E6%97%A5/" class="post-title-link" itemprop="url">又记一次Android版本的变动</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-10-15 10:45:24" itemprop="dateCreated datePublished" datetime="2025-10-15T10:45:24+08:00">2025-10-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-01-19 10:32:57" itemprop="dateModified" datetime="2026-01-19T10:32:57+08:00">2026-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="问题情况"><a href="#问题情况" class="headerlink" title="问题情况"></a>问题情况</h1><p>之前在处理关于恢复出厂设置的问题时,遇到了不允许后台执行系统性广播的问题,在此谨记</p>
-<h1 id="情况分析"><a href="#情况分析" class="headerlink" title="情况分析"></a>情况分析</h1><p>因为工作需求,所以需要做读取 U 盘文件进行还原出厂设置的功能,当其他功能都做好后,发送广播却一直不生效,查看日志后发现了如下日志</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10-14 09:59:16.478   731   813 W BroadcastQueue: Background execution not allowed: receiving Intent &#123; act=android.intent.action.MASTER_CLEAR flg=0x10000010 (has extras) &#125; to android/com.android.server.MasterClearReceiver</span><br></pre></td></tr></table></figure>
-
-<p>此日志的意思是该广播无法在后台状态执行.<br>经过网上查询后得知如下信息</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">从 Android 8(API 26)开始,Google 引入了 后台执行限制(Background Execution Limits) :当应用不在前台(即后台运行、未在用户可见状态)时,它不能随意接收或触发广播、启动服务.</span><br></pre></td></tr></table></figure>
-
-<p>故该问题依旧是 Android8 之后的版本变更问题</p>
-<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><p>经过查询日志关键字后,在网上一篇文章中得知,对于该情况,在框架层源码中,有如下限制条件</p>
-<p>路径在 frameworks&#x2F;base&#x2F;services&#x2F;core&#x2F;java&#x2F;com&#x2F;android&#x2F;server&#x2F;am&#x2F;BroadcastQueue.java 中</p>
-<p>代码行数在 1588-1617 之间</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">if</span> (!skip) &#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">allowed</span> <span class="operator">=</span> mService.getAppStartModeLOSP(</span><br><span class="line">   info.activityInfo.applicationInfo.uid, info.activityInfo.packageName,</span><br><span class="line">   info.activityInfo.applicationInfo.targetSdkVersion, -<span class="number">1</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span><br><span class="line"> <span class="keyword">if</span> (allowed != ActivityManager.APP_START_MODE_NORMAL) &#123;</span><br><span class="line">  <span class="comment">// We won&#x27;t allow this receiver to be launched if the app has been</span></span><br><span class="line">  <span class="comment">// completely disabled from launches, or it was not explicitly sent</span></span><br><span class="line">  <span class="comment">// to it and the app is in a state that should not receive it</span></span><br><span class="line">  <span class="comment">// (depending on how getAppStartModeLOSP has determined that).</span></span><br><span class="line">  <span class="keyword">if</span> (allowed == ActivityManager.APP_START_MODE_DISABLED) &#123;</span><br><span class="line">   Slog.w(TAG, <span class="string">&quot;Background execution disabled: receiving &quot;</span></span><br><span class="line">     + r.intent + <span class="string">&quot; to &quot;</span></span><br><span class="line">     + component.flattenToShortString());</span><br><span class="line">   skip = <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((((r.intent.getFlags()&amp;Intent.FLAG_RECEIVER_EXCLUDE_BACKGROUND) != <span class="number">0</span>)</span><br><span class="line">    || (r.intent.getComponent() == <span class="literal">null</span></span><br><span class="line">     &amp;&amp; r.intent.getPackage() == <span class="literal">null</span></span><br><span class="line">     &amp;&amp; ((r.intent.getFlags()</span><br><span class="line">       &amp; Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND) == <span class="number">0</span>)</span><br><span class="line">     &amp;&amp; !isSignaturePerm(r.requiredPermissions))) &amp;&amp; !skipBtState(r.intent.getAction())) &#123;<span class="comment">// xiaming add</span></span><br><span class="line">   mService.addBackgroundCheckViolationLocked(r.intent.getAction(),</span><br><span class="line">     component.getPackageName());</span><br><span class="line">   Slog.w(TAG, <span class="string">&quot;Background execution not allowed: receiving &quot;</span></span><br><span class="line">     + r.intent + <span class="string">&quot; to &quot;</span></span><br><span class="line">     + component.flattenToShortString());</span><br><span class="line">   skip = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>先列出常量的含义</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** <span class="doctag">@hide</span> Mode for &#123;<span class="doctag">@link</span> IActivityManager#isAppStartModeDisabled&#125;: normal free-to-run operation. */</span></span><br><span class="line"><span class="comment">// 应用可以正常启动,接收广播,运行后台任务.没有被系统节制或限制。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">APP_START_MODE_NORMAL</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** <span class="doctag">@hide</span> Mode for &#123;<span class="doctag">@link</span> IActivityManager#isAppStartModeDisabled&#125;: delay running until later. */</span></span><br><span class="line"><span class="comment">// 系统允许该应用启动或接收广播，但会延迟执行，以防止过多后台唤醒。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">APP_START_MODE_DELAYED</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** <span class="doctag">@hide</span> Mode for &#123;<span class="doctag">@link</span> IActivityManager#isAppStartModeDisabled&#125;: delay running until later, with</span></span><br><span class="line"><span class="comment"> * rigid errors (throwing exception). */</span></span><br><span class="line"><span class="comment">// 与 DELAYED 类似，但系统会对违规操作抛出异常或记录更严格的警告。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">APP_START_MODE_DELAYED_RIGID</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** <span class="doctag">@hide</span> Mode for &#123;<span class="doctag">@link</span> IActivityManager#isAppStartModeDisabled&#125;: disable/cancel pending</span></span><br><span class="line"><span class="comment"> * launches; this is the mode for ephemeral apps. */</span></span><br><span class="line"><span class="comment">// 应用被系统判定为 完全禁止后台启动。所有后台广播、服务、进程启动请求都将被拒绝。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">APP_START_MODE_DISABLED</span> <span class="operator">=</span> <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><p>如果不是正常应用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">int</span> <span class="variable">allowed</span> <span class="operator">=</span> mService.getAppStartModeLOSP(</span><br><span class="line"> info.activityInfo.applicationInfo.uid, info.activityInfo.packageName,</span><br><span class="line"> info.activityInfo.applicationInfo.targetSdkVersion, -<span class="number">1</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span><br><span class="line"> <span class="keyword">if</span> (allowed != ActivityManager.APP_START_MODE_NORMAL) &#123;</span><br><span class="line">    <span class="comment">// ....</span></span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后判断应用是否被完全禁止后台启动执行</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (allowed == ActivityManager.APP_START_MODE_DISABLED) &#123;</span><br><span class="line">   Slog.w(TAG, <span class="string">&quot;Background execution disabled: receiving &quot;</span></span><br><span class="line">     + r.intent + <span class="string">&quot; to &quot;</span></span><br><span class="line">     + component.flattenToShortString());</span><br><span class="line">   skip = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里是核心代码,只要不满足此处的判断条件,应用就可以绕开系统的限制发送执行一些关键性危险广播</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((((r.intent.getFlags()&amp;Intent.FLAG_RECEIVER_EXCLUDE_BACKGROUND) != <span class="number">0</span>)</span><br><span class="line">     || (r.intent.getComponent() == <span class="literal">null</span></span><br><span class="line">      &amp;&amp; r.intent.getPackage() == <span class="literal">null</span></span><br><span class="line">      &amp;&amp; ((r.intent.getFlags()</span><br><span class="line">        &amp; Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND) == <span class="number">0</span>)</span><br><span class="line">      &amp;&amp; !isSignaturePerm(r.requiredPermissions)))) &#123;</span><br><span class="line">    mService.addBackgroundCheckViolationLocked(r.intent.getAction(),</span><br><span class="line">      component.getPackageName());</span><br><span class="line">    Slog.w(TAG, <span class="string">&quot;Background execution not allowed: receiving &quot;</span></span><br><span class="line">      + r.intent + <span class="string">&quot; to &quot;</span></span><br><span class="line">      + component.flattenToShortString());</span><br><span class="line">    skip = <span class="literal">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>拆解开来,则是如下代码(从右往左)</p>
-<p>如果没有系统签名权限</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!isSignaturePerm(r.requiredPermissions)</span><br></pre></td></tr></table></figure>
-
-<p>如果 Intent 没有设置<strong>FLAG_RECEIVER_INCLUDE_BACKGROUND</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(r.intent.getFlags() &amp; Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND) == <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<p>如果 Intent 是一个没有具体接受者的 Intent</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.intent.getComponent() == <span class="literal">null</span> &amp;&amp; r.intent.getPackage() == <span class="literal">null</span></span><br></pre></td></tr></table></figure>
-
-<p>如果设置了<strong>FLAG_RECEIVER_EXCLUDE_BACKGROUND</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(r.intent.getFlags() &amp; Intent.FLAG_RECEIVER_EXCLUDE_BACKGROUND) != <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<p>结合原代码逻辑则如下</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置不允许后台接受广播||(是隐式广播)&amp;&amp;(设置广播允许后台接收)&amp;&amp;(不具有系统签名权限)</span><br></pre></td></tr></table></figure>
-
-<p>则该判断生效于不允许广播被后台应用接收的系统隐式广播</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>只需要让以上复杂判断其中几个条件失效就能成功解决该问题</p>
-<p>4 个条件:</p>
-<ol>
-<li><strong>FLAG_RECEIVER_EXCLUDE_BACKGROUND</strong></li>
-</ol>
-<p>一般我们不需要加上这个标志,所以该标志可以跳过.</p>
-<ol>
-<li><strong>隐式广播</strong></li>
-</ol>
-<p>只需要让发送广播拥有一个明确的指向即可,包名和组件名其中一个不为 Null 就行</p>
-<ol>
-<li><strong>FLAG_RECEIVER_INCLUDE_BACKGROUND</strong></li>
-</ol>
-<p>这里需要发送广播加上这个标志<strong>FLAG_RECEIVER_INCLUDE_BACKGROUND</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * If set, the broadcast will always go to manifest receivers in background (cached</span></span><br><span class="line"><span class="comment">  * or not running) apps, regardless of whether that would be done by default.  By</span></span><br><span class="line"><span class="comment">  * default they will only receive broadcasts if the broadcast has specified an</span></span><br><span class="line"><span class="comment">  * explicit component or package name.</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">NOTE:</span> dumpstate uses this flag numerically, so when its value is changed</span></span><br><span class="line"><span class="comment">  * the broadcast code there must also be changed to match.</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@hide</span></span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">FLAG_RECEIVER_INCLUDE_BACKGROUND</span> <span class="operator">=</span> <span class="number">0x01000000</span>;</span><br></pre></td></tr></table></figure>
-
-<p>该标志在源码中是隐藏的,所以需要直接在代码中直接写二进制代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intent.addFlags(<span class="number">0x01000000</span>);</span><br></pre></td></tr></table></figure>
-
-<p>加上这个标志即可让如下判断失效</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.intent.getFlags() &amp; Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND) == <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><strong>系统签名</strong></li>
-</ol>
-<p>如果条件 3 不满足,则该条件判断即自动失效,无论结果如何</p>
-<h1 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h1><p>综上所述,若想让广播生效,不被系统直接丢弃<strong>MASTER_CLEAR</strong>广播,则必须破坏上述四个条件之一,严格上讲,只需要破坏其中两个之一就行.<br>此外,对于系统级广播,建议使用具有系统签名的应用并确保前台运行,若是自定义广播,则建议显式写明对象包名或者组件名以避免被当成隐式广播.</p>
-<p>若在进行 ROM 开发,则可自定义 BroadcastQueue 中代码以满足特定需求.</p>
-<p>此记</p>
-<h1 id="引用文章"><a href="#引用文章" class="headerlink" title="引用文章"></a>引用文章</h1><blockquote>
-<p>参考文章:<a target="_blank" rel="noopener" href="https://blog.csdn.net/sdsxtianshi/article/details/83625636">Background execution not allowed 分析</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/10/concurrent/%E5%B9%B6%E5%8F%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MajorTom">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Hexo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/10/10/concurrent/%E5%B9%B6%E5%8F%91/" class="post-title-link" itemprop="url">Java并发</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-10-10 14:25:02" itemprop="dateCreated datePublished" datetime="2025-10-10T14:25:02+08:00">2025-10-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-01-19 10:32:57" itemprop="dateModified" datetime="2026-01-19T10:32:57+08:00">2026-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/tech/" itemprop="url" rel="index"><span itemprop="name">技术文档</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><ol>
-<li><p>简述</p>
-<p> 在计算机术语中,并发被描述为同一时间多个任务在一个处理器上执行而互相并不关心其执行结果,本质是为了更加高效的利用处理器的时间以及资源,该概念是为了解决多任务情况下处理器排队执行导致的效率低下问题.</p>
-</li>
-<li><p>起源</p>
-</li>
-</ol>
-<p>  由于当前的计算机</p>
-<ol start="2">
-<li><p>理论</p>
-</li>
-<li><p>实际代码</p>
-</li>
-<li><p>总结</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/10/note/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MajorTom">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Hexo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/10/10/note/2025%E5%B9%B410%E6%9C%8814%E6%97%A5/" class="post-title-link" itemprop="url">记一次Android更新后的改动</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-10-10 14:25:02" itemprop="dateCreated datePublished" datetime="2025-10-10T14:25:02+08:00">2025-10-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-01-19 10:32:57" itemprop="dateModified" datetime="2026-01-19T10:32:57+08:00">2026-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天在处理 bug 时,遇到了一个 Android 8 以后的改动,在此先记录一下</p>
-<h1 id="问题情况"><a href="#问题情况" class="headerlink" title="问题情况"></a>问题情况</h1><p>在处理一个需求的时候,需要对 U 盘的插入和状态变化进行监听,之前写的检测算法代码过于复杂,且在 Android12 的机器上无法正常运行,所以正好借此机会对于 Android12 的改动进行一个学习</p>
-<h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><p>在 Android8 之前,处理 U 盘的插入以及就绪情况需要监听系统发出的各个广播<br>列一些常用的 USb 相关广播表如下<br>Android 9 之前</p>
-<table>
-<thead>
-<tr>
-<th align="center">广播名字</th>
-<th align="center">广播字符串</th>
-<th align="center">广播代码</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">USB 设备插入</td>
-<td align="center">android.hardware.usb.action.USB_DEVICE_ATTACHED</td>
-<td align="center">ACTION_USB_DEVICE_ATTACHED</td>
-</tr>
-<tr>
-<td align="center">USB 设备移除</td>
-<td align="center">android.hardware.usb.action.USB_DEVICE_DETACHED</td>
-<td align="center">ACTION_USB_DEVICE_DETACHED</td>
-</tr>
-<tr>
-<td align="center">USB 配置更改</td>
-<td align="center">android.hardware.usb.action.USB_STATE</td>
-<td align="center">ACTION_USB_STATE</td>
-</tr>
-<tr>
-<td align="center">存储检查中</td>
-<td align="center">android.intent.action.MEDIA_CHECKING</td>
-<td align="center">ACTION_MEDIA_CHECKING</td>
-</tr>
-<tr>
-<td align="center">存储挂载完成</td>
-<td align="center">android.intent.action.MEDIA_MOUNTED</td>
-<td align="center">ACTION_MEDIA_MOUNTED</td>
-</tr>
-<tr>
-<td align="center">存储插入但是尚未完成挂载动作</td>
-<td align="center">android.intent.action.MEDIA_UNMOUNTED</td>
-<td align="center">ACTION_MEDIA_UNMOUNTED</td>
-</tr>
-<tr>
-<td align="center">存储正在卸载</td>
-<td align="center">android.intent.action.MEDIA_EJECT</td>
-<td align="center">ACTION_MEDIA_EJECT</td>
-</tr>
-<tr>
-<td align="center">存储卸载完成</td>
-<td align="center">android.intent.action.MEDIA_REMOVED</td>
-<td align="center">ACTION_MEDIA_REMOVED</td>
-</tr>
-<tr>
-<td align="center">存储扫描开始</td>
-<td align="center">android.intent.action.MEDIA_SCANNER_STARTED</td>
-<td align="center">ACTION_MEDIA_SCANNER_STARTED</td>
-</tr>
-<tr>
-<td align="center">存储扫描完成</td>
-<td align="center">android.intent.action.MEDIA_SCANNER_FINISHED</td>
-<td align="center">ACTION_MEDIA_SCANNER_FINISHED</td>
-</tr>
-</tbody></table>
-<p>一般我们用到最多的是</p>
-<ul>
-<li><strong>ACTION_MEDIA_MOUNTED</strong></li>
-<li><strong>ACTION_MEDIA_REMOVED</strong></li>
-<li><strong>USB_DEVICE_ATTACHED</strong></li>
-<li><strong>USB_DEVICE_DETACHED</strong></li>
-</ul>
-<p>这四个广播,前两个代表存储的状态变更,而后两者则代表系统通知有存储插入机器,可以对其进行一些对应的操作,但是并不代表存储的状态是可用的,因为系统需要一些时间去对存储进行挂载操作,会大概在几百毫秒内完成,具体数值需要具体机器分析</p>
-<p>当存储处于 Mounted 状态时,就代表该存储在机器上可以进行一些针对文件的操作,比如查找,删除等<br>代码如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UsbReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;UsbReceiver&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> intent.getAction();</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;action-&gt;&quot;</span> + action);</span><br><span class="line">        <span class="keyword">if</span> (action != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">switch</span> (action)&#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&quot;android.intent.action.MEDIA_MOUNTED&quot;</span>:</span><br><span class="line">                   <span class="comment">// do something</span></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&quot;android.intent.action.MEDIA_REMOVED&quot;</span>:</span><br><span class="line">                  <span class="comment">// do something</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注册广播</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.receiver.UsbReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:priority</span>=<span class="string">&quot;1000&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MEDIA_MOUNTED&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MEDIA_REMOVED&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>以上代码可以在 Android8 以前的机器上正常使用,需要注意的是<br><strong>动态注册的广播接收者无法在尚未启动过应用的情况下获取系统广播</strong>和<strong>静态注册的广播接收者则会在系统完成启动后在收到对应广播时由系统代为转发至应用广播接收器</strong>,所以想在开机时获取开机广播再进行调用某个应用的话,静态注册广播会是更好的选择</p>
-<p>以上是 Android8 之前的系统广播有关前置知识</p>
-<h1 id="问题情况分析"><a href="#问题情况分析" class="headerlink" title="问题情况分析"></a>问题情况分析</h1><p>在 Android8 之后,Google 加强了广播的安全性,为了限制后台应用滥用广播和提高性能和电池续航,对于隐式广播(没有指定接收者的广播,系统会根据所有应用中<strong>AndroidManifest.xml</strong>中注册的<strong>Receiver</strong>中声明的<strong>intent-fliter</strong>来查找需要处理该广播的应用)而言,Google 将很多静态可以接收到的广播都转为了动态注册才能接收到对应的广播.<br><strong>具体哪些广播被允许静态注册可以查阅 Google 官方文档的 <a target="_blank" rel="noopener" href="https://developer.android.com/develop/background-work/background-tasks/broadcasts/broadcast-exceptions">Implicit Broadcast Exceptions</a>.</strong><br>其中也包括<strong>ACTION_MEDIA_MOUNTED</strong>这个广播.<br>所以在需要应用在未启动且冷启动也无的情况下处理 USB 设备的插拔带来了很大的麻烦,但是 Google 并没有彻底堵住获取这个广播的途径,对于需要获取这个广播的应用,Google 提供了新的 API 来处理这个情况</p>
-<h2 id="StorageManager-StorageVolumeCallback"><a href="#StorageManager-StorageVolumeCallback" class="headerlink" title="StorageManager.StorageVolumeCallback"></a>StorageManager.StorageVolumeCallback</h2><p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">import</span> android.os.Environment;</span><br><span class="line">  <span class="keyword">import</span> android.os.storage.StorageManager;</span><br><span class="line">  <span class="keyword">import</span> android.os.storage.StorageVolume;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">UsbStorageVolumeCallback</span> <span class="keyword">extends</span> <span class="title class_">StorageManager</span>.StorageVolumeCallback &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onStateChanged</span><span class="params">(<span class="meta">@NonNull</span> StorageVolume volume)</span> &#123;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;volume state changed&quot;</span>);</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;volume-&gt;&quot;</span> + volume);</span><br><span class="line">        LogUtils.d(TAG,<span class="string">&quot;volume state -&gt;&quot;</span>+volume.getState());</span><br><span class="line">        LogUtils.d(TAG,<span class="string">&quot;volume context:&quot;</span>+context);</span><br><span class="line">        <span class="keyword">if</span>(volume.isRemovable())&#123;</span><br><span class="line">            LogUtils.d(TAG, <span class="string">&quot;usb device is removable&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span>(volume.getState().equals(Environment.MEDIA_MOUNTED))&#123;</span><br><span class="line">                LogUtils.d(TAG, <span class="string">&quot;usb device mounted&quot;</span>);</span><br><span class="line">                <span class="comment">// do somethings</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注册回调函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StorageManager</span> <span class="variable">storageManager</span> <span class="operator">=</span> getSystemService(StorageManager.class);</span><br><span class="line"><span class="type">UsbStorageVolumeCallback</span> <span class="variable">usbStorageVolumeCallback</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">UsbStorageVolumeCallback</span>();</span><br><span class="line">storageManager.registerStorageVolumeCallback(executor,usbStorageVolumeCallback);</span><br></pre></td></tr></table></figure>
-
-<p>通过这个回调函数,我们可以在 Android8 之后让应用获取广播以对 USB 设备进行一些操作,但是需要指出的一点是,不能直接通过静态注册这个广播接收器来获取该广播,我们需要曲线救国,通过框架层给出的<strong>USB_DEVICE_ATTACHED</strong>广播,我们可以知道有设备进行插入,然后通过注册回调函数,我们可以在系统完成挂载的第一时间获取设备的挂载信息</p>
-<p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UsbReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;UsbReceiver&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">      <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> intent.getAction();</span><br><span class="line">      LogUtils.d(TAG, <span class="string">&quot;action-&gt;&quot;</span> + action);</span><br><span class="line">      <span class="keyword">if</span> (action != <span class="literal">null</span>) &#123;</span><br><span class="line">          <span class="keyword">switch</span> (action)&#123;</span><br><span class="line">              <span class="keyword">case</span> <span class="string">&quot;android.hardware.usb.action.USB_DEVICE_ATTACHED&quot;</span>:</span><br><span class="line">                  <span class="comment">// do somethings</span></span><br><span class="line">                  <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注册广播</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.receiver.UsbReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:enabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:priority</span>=<span class="string">&quot;1000&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.hardware.usb.action.USB_DEVICE_ATTACHED&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.hardware.usb.action.USB_DEVICE_DETACHED&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>通过注册这个广播,通过 Google 允许的静态接收广播<strong>USB_DEVICE_ATTACHED</strong>,可以间接注册回调函数</p>
-<p>注册服务,避开 Google 对于广播处理时间只有 10 秒的限制,让需要长时间作业的任务通过服务来继续</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UsbReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;UsbReceiver&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> intent.getAction();</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;action-&gt;&quot;</span> + action);</span><br><span class="line">        <span class="keyword">if</span> (action != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">switch</span> (action)&#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&quot;android.hardware.usb.action.USB_DEVICE_ATTACHED&quot;</span>:</span><br><span class="line">                    <span class="type">JobScheduler</span> <span class="variable">jobScheduler</span> <span class="operator">=</span> context.getSystemService(JobScheduler.class);</span><br><span class="line">                    <span class="type">JobInfo</span> <span class="variable">service</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JobInfo</span>.Builder(</span><br><span class="line">                            <span class="number">2333</span>,</span><br><span class="line">                            <span class="keyword">new</span> <span class="title class_">ComponentName</span>(context,UsbService.class)</span><br><span class="line">                    ).setOverrideDeadline(<span class="number">0</span>).build();</span><br><span class="line">                    LogUtils.d(TAG, <span class="string">&quot;usb device attached, starting UsbService&quot;</span>);</span><br><span class="line">                    jobScheduler.schedule(service);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>服务中的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UsbService</span> <span class="keyword">extends</span> <span class="title class_">JobService</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;UsbReceiver&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newSingleThreadExecutor();</span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line">    <span class="keyword">private</span> StorageManager storageManager;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">UsbStorageVolumeCallback</span> <span class="variable">usbStorageVolumeCallback</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">UsbStorageVolumeCallback</span>();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">isRegister</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onStartJob</span><span class="params">(JobParameters params)</span> &#123;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;UsbService started&quot;</span>);</span><br><span class="line">        <span class="comment">// 防止重复注册导致重复执行的问题</span></span><br><span class="line">        <span class="keyword">if</span>(storageManager == <span class="literal">null</span>)&#123;</span><br><span class="line">            storageManager = getSystemService(StorageManager.class);</span><br><span class="line">        &#125;</span><br><span class="line">        LogUtils.d(TAG, <span class="string">&quot;register usb storage volume callback&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(storageManager != <span class="literal">null</span>)&#123;</span><br><span class="line">            LogUtils.d(TAG, <span class="string">&quot;storageManager-&gt;&quot;</span> + storageManager);</span><br><span class="line">            <span class="comment">// 防止重复注册回调函数</span></span><br><span class="line">            <span class="keyword">if</span>(isRegister)&#123;</span><br><span class="line">                LogUtils.d(TAG, <span class="string">&quot;usb storage volume callback already registered, skip&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            storageManager.registerStorageVolumeCallback(executor,usbStorageVolumeCallback);</span><br><span class="line">            isRegister = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            LogUtils.e(TAG, <span class="string">&quot;storageManager is null, cant register usb storage volume callback&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onStopJob</span><span class="params">(JobParameters params)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (isRegister &amp;&amp; storageManager != <span class="literal">null</span>) &#123;</span><br><span class="line">            storageManager.unregisterStorageVolumeCallback(usbStorageVolumeCallback);</span><br><span class="line">            isRegister = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过以上的分析,在 Android8 之后的应用,可以通过<strong>StorageManager</strong>和<strong>UsbStorageVolumeCallback</strong>以及<strong>ACTION_USB_DEVICE_ATTACHED</strong>的配合来间接完成 Android8 之前只需要注册广播就可以完成的任务</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2026</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">MajorTom</span>
-  </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-</body>
-</html>
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">4</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-19T02:56:47.917Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By MajorTom</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
