@@ -45,9 +45,9 @@ relative_link: false
 future: true
 syntax_highlighter: highlight.js
 highlight:
-  enable: true
+  enable: false
+  line_number: false
   theme: github
-  line_number: true
   auto_detect: false
   tab_replace: ''
 prismjs:
